@@ -107,8 +107,6 @@ name.
 Bronx and prepared either American or Chinese dish.
 ->  db.addresses.find({ "borough": "Bronx" , $or : [ { "cuisine" : "American " },{ "cuisine" : "Chinese" }] } )
  
-db.addresses.find( {borough: "Bronx", cuisine: {$in: [ "American", "Chinese"]}} )
-
 18. Write a MongoDB query to find the restaurant Id, name, borough and cuisine
 for those restaurants which belong to the borough Staten Island or Queens or
 Bronxor Brooklyn.
@@ -130,14 +128,12 @@ for those restaurants which achieved a score which is not more than 10.
 21. Write a MongoDB query to find the restaurant Id, name, borough and cuisine
 for those restaurants which prepared dish except 'American' and 'Chinees' or
 restaurant's name begins with letter 'Wil'.
-db.addresses.find(
-{$or: [
-  {name: /^Wil/}, 
-  {"$and": [
+-> db.addresses.find(
+    {$or: [  {name: /^Wil/},   {"$and": [
        {"cuisine" : {$ne :"American "}}, 
        {"cuisine" : {$ne :"Chinese"}}
-   ]}
-]}
+     ]}
+    ]}
 ,{"restaurant_id" : 1,"name":1,"borough":1,"cuisine" :1}
 )
 
